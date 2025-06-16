@@ -1,0 +1,11 @@
+node_modules/
+dist/
+coverage/
+
+.DS_Store
+.vscode/*
+!.vscode/settings.json
+!.vscode/launch.json
+
+*.log
+npm-debug.log*

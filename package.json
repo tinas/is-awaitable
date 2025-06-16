@@ -1,0 +1,64 @@
+{
+  "name": "is-awaitable",
+  "version": "1.0.0",
+  "description": "A lightweight TypeScript utility to detect async functions.",
+  "keywords": [
+    "async",
+    "function",
+    "function*",
+    "yield",
+    "await",
+    "promise",
+    "async-function",
+    "async-generator",
+    "typescript"
+  ],
+  "type": "module",
+  "types": "dist/index.d.ts",
+  "main": "dist/index.cjs.js",
+  "module": "dist/index.esm.js",
+  "browser": "dist/index.umd.js",
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "scripts": {
+    "clean": "rimraf dist coverage",
+    "prebuild": "npm run clean",
+    "build:dev": "cross-env NODE_ENV=development rollup -c",
+    "build:prod": "cross-env NODE_ENV=production rollup -c && rimraf dist/types",
+    "test": "vitest",
+    "test:coverage": "vitest --coverage",
+    "lint": "eslint src",
+    "lint:fix": "eslint src --fix",
+    "prepublishOnly": "npm run test && npm run lint && npm run build:prod"
+  },
+  "author": "Ahmet Tinastepe <ahmttnstpe@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/tinas/is-awaitable/issues"
+  },
+  "homepage": "https://github.com/tinas/is-awaitable#readme",
+  "simple-git-hooks": {
+    "commit-msg": "npx --no -- commitlint --edit \"$1\""
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^19.8.1",
+    "@commitlint/config-conventional": "^19.8.1",
+    "@rollup/plugin-node-resolve": "^16.0.1",
+    "@rollup/plugin-terser": "^0.4.4",
+    "@rollup/plugin-typescript": "^12.1.2",
+    "@stylistic/eslint-plugin": "^4.4.1",
+    "@vitest/coverage-v8": "3.2.3",
+    "@vitest/eslint-plugin": "^1.2.7",
+    "cross-env": "^7.0.3",
+    "eslint": "^9.29.0",
+    "eslint-plugin-import-x": "^4.15.2",
+    "eslint-plugin-unicorn": "^59.0.1",
+    "rimraf": "^6.0.1",
+    "rollup": "^4.43.0",
+    "rollup-plugin-dts": "^6.2.1",
+    "typescript-eslint": "^8.34.1",
+    "vitest": "^3.2.3"
+  }
+}
