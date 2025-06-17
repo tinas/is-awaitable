@@ -7,8 +7,6 @@ export default defineConfig({
       include: ['src/**/*.{ts,tsx}'],
       exclude: [
         ...coverageConfigDefaults.exclude,
-        'src/index.ts',
-        'src/types.ts'
       ]
     }
   }
