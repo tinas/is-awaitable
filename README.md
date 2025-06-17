@@ -5,7 +5,7 @@
 [![codecov](https://codecov.io/gh/tinas/is-awaitable/branch/main/graph/badge.svg)](https://codecov.io/gh/tinas/is-awaitable)
 [![License](https://img.shields.io/npm/l/is-awaitable.svg)](LICENSE)
 
-A tiny, zero-dependency TypeScript utility to detect functions declared with `async` (including async generators).
+A lightweight solution for detecting async functions (including async generators).
 
 ## Installation
 
@@ -29,12 +29,18 @@ $ pnpm add is-awaitable
 You can use `is-awaitable` directly in browsers via CDN:
 
 ```html
-<script src="https://unpkg.com/is-awaitable"></script>
+<script src="https://unpkg.com/is-awaitable@latest/dist/index.umd.js"></script>
 <!-- or -->
-<script src="https://cdn.jsdelivr.net/npm/is-awaitable"></script>
+<script src="https://cdn.jsdelivr.net/npm/is-awaitable@latest/dist/index.umd.js"></script>
+
 <script>
-  const asyncFn = async () => 'ok';
-  console.log(isAwaitable(asyncFn)); // true
+  const { isAwaitable } = window.IsAwaitable;
+
+  async function foo() { return 'hello'; }
+  function bar() { return 42; }
+
+  console.log( isAwaitable(foo) ); // true
+  console.log( isAwaitable(bar) ); // false
 </script>
 ```
 

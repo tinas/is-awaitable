@@ -1,16 +1,23 @@
-import fs from 'fs'
+import path from 'node:path'
+import { fileURLToPath } from 'node:url'
 import terser from '@rollup/plugin-terser'
-import typescript from '@rollup/plugin-typescript'
-import { nodeResolve } from '@rollup/plugin-node-resolve'
+import resolve from '@rollup/plugin-node-resolve'
 import { dts } from 'rollup-plugin-dts'
-
-const pkg = JSON.parse(fs.readFileSync(new URL('./package.json', import.meta.url)))
+import typescript from '@rollup/plugin-typescript'
+import commonjs from '@rollup/plugin-commonjs'
+import pkg from './package.json' with { type: 'json' }
 
 const isProd = process.env.NODE_ENV === 'production'
 
+const __dirname = path.dirname(fileURLToPath(import.meta.url))
+
 const basePlugins = [
-  nodeResolve(),
-  typescript({ tsconfig: './tsconfig.json', exclude: ['**/__tests__/**'] })
+  typescript({
+    tsconfig: path.resolve(__dirname, 'tsconfig.json'),
+    exclude: ['**/__tests__/**']
+  }),
+  resolve(),
+  commonjs()
 ]
 
 export default [
@@ -29,7 +36,7 @@ export default [
         sourcemap: !isProd
       },
       {
-        file: pkg.browser,
+        file: pkg.unpkg,
         format: 'umd',
         exports: 'named',
         name: 'IsAwaitable',

@@ -1,4 +1,4 @@
-import { isAwaitable } from '../src/is-awaitable'
+import { isAwaitable } from '../index'
 
 function bindAsync(fn: Function) {
   return fn.bind({})
