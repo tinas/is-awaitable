@@ -1,6 +1,6 @@
 {
   "name": "is-awaitable",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A lightweight TypeScript utility to detect async functions.",
   "keywords": [
     "async",
@@ -18,6 +18,13 @@
   "main": "dist/index.cjs.js",
   "module": "dist/index.esm.js",
   "browser": "dist/index.umd.js",
+  "exports": {
+    ".": {
+      "require": "./dist/index.cjs.js",
+      "import": "./dist/index.esm.js",
+      "browser": "./dist/index.umd.js"
+    }
+  },
   "files": [
     "dist",
     "README.md"

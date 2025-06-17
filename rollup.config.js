@@ -7,7 +7,6 @@ import { dts } from 'rollup-plugin-dts'
 const pkg = JSON.parse(fs.readFileSync(new URL('./package.json', import.meta.url)))
 
 const isProd = process.env.NODE_ENV === 'production'
-const globalName = 'isAwaitable'
 
 const basePlugins = [
   nodeResolve(),
@@ -21,6 +20,7 @@ export default [
       {
         file: pkg.main,
         format: 'cjs',
+        exports: 'named',
         sourcemap: !isProd
       },
       {
@@ -31,7 +31,8 @@ export default [
       {
         file: pkg.browser,
         format: 'umd',
-        name: globalName,
+        exports: 'named',
+        name: 'IsAwaitable',
         sourcemap: !isProd
       }
     ],
